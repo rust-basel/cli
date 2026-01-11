@@ -1,6 +1,6 @@
 [package]
 name = "rust-basel-cli"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2024"
 authors = ["rust-basel"]
 description = "The cli to explore meetups and interact"
