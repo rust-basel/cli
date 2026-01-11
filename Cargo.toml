@@ -1,6 +1,17 @@
 [package]
-name = "cli"
-version = "0.1.0"
+name = "rust-basel-cli"
+version = "0.0.1"
 edition = "2024"
+authors = ["rust-basel"]
+description = "The cli to explore meetups and interact"
+license = "MIT"
+repository = "https://github.com/rust-basel/cli"
+keywords = ["cli"]
+categories = ["command-line-utilities"]
+
+[[bin]]
+name = "basel"
+path = "src/main.rs"
 
 [dependencies]
+argh = "0.1.13"
