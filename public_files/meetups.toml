@@ -1,0 +1,18 @@
+[[meetups]]
+id = 0
+title = "Opensource Contributions Meetup #0"
+date = "?"
+description = "In this meetup we will build teams to contribute to or create opensource software, you will get support in doing so"
+markdown_url = "http://example.com/meetup.md"
+
+[meetups.address]
+street = "Barfüsserplatz 6"
+city = "Basel"
+postal_code = "4051"
+country = "Switzerland"
+description = "Level 4 - Optravis Headquarter"
+
+[[meetups.sponsors]]
+name = "Optravic LLC"
+website = "http://optravis.com"
+content = ""
