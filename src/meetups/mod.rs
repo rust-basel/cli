@@ -69,7 +69,4 @@ impl Meetup {
     }
 }
 
-
-pub fn meetup_ui(){
-    
-}
+pub fn meetup_ui() {}
