@@ -18,11 +18,11 @@ pub fn build() {
 
     let html = html! {
         @for h in &meetups_htmls {
-                  li { (h.clone()) }
+                  (h.clone())
         }
     };
 
-    let _dir = fs::create_dir_all("page").unwrap();
+    fs::create_dir_all("page").unwrap();
 
     let mut html_file = fs::OpenOptions::new()
         .write(true)
@@ -30,7 +30,7 @@ pub fn build() {
         .create(true)
         .open("page/index.html")
         .unwrap();
-    html_file.write(html.into_string().as_bytes()).unwrap();
+    html_file.write_all(html.into_string().as_bytes()).unwrap();
 }
 
 fn single_markdown(meetup: Meetup, markdown: (String, String)) -> maud::Markup {

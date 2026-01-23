@@ -24,7 +24,7 @@ lint:
 
 fmt:
     cargo fmt
-    cargo fix --allow-dirty --allow-stageds
+    cargo fix --allow-dirty --allow-staged
 
 publish:
     cargo release

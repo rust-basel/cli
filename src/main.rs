@@ -43,11 +43,6 @@ struct AdminCommand {}
 
 #[derive(FromArgs, PartialEq, Debug)]
 /// Find the featured jobs.
-#[argh(subcommand, name = "init")]
-struct InitCommand {}
-
-#[derive(FromArgs, PartialEq, Debug)]
-/// Find the featured jobs.
 #[argh(subcommand, name = "job")]
 struct JobCommand {}
 
@@ -65,10 +60,7 @@ fn main() {
     let basel: Basel = argh::from_env();
     match basel.commands {
         Some(c) => match_command(c),
-        None => {
-            inquire();
-            return;
-        }
+        None => inquire(),
     }
 }
 

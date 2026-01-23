@@ -1,5 +1,3 @@
-use std::default;
-
 use maud::Markup;
 use serde::{Deserialize, Serialize};
 
