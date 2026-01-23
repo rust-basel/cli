@@ -42,7 +42,7 @@ struct AdminCommand {}
 
 #[derive(FromArgs, PartialEq, Debug)]
 /// Find the featured jobs.
-#[argh(subcommand, name = "job")]
+#[argh(subcommand, name = "init")]
 struct InitCommand {}
 
 #[derive(FromArgs, PartialEq, Debug)]

@@ -38,3 +38,14 @@ What to look out for:
 
 Normally you use some software that can be extended in some way or support interactions over some protocol or API.
 Think about what software you use on a daily basis, or what software you would like to use but is missing some maybe a ui or a cli.
+
+
+### Projects and Issues
+
+#### Issues
+- https://github.com/vleue/vleue_navigator/issues/106
+
+#### Repositories
+- https://github.com/BloopAI/vibe-kanban
+- https://github.com/ironcalc/IronCalc
+- https://github.com/rust-basel/cli
