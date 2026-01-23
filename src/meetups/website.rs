@@ -22,11 +22,13 @@ pub fn build() {
         }
     };
 
+    let _dir = fs::create_dir_all("page").unwrap();
+
     let mut html_file = fs::OpenOptions::new()
         .write(true)
         .truncate(true)
         .create(true)
-        .open("index.html")
+        .open("page/index.html")
         .unwrap();
     html_file.write(html.into_string().as_bytes()).unwrap();
 }
