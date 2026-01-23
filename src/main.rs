@@ -1,5 +1,6 @@
 mod docs;
 mod meetups;
+mod remote;
 
 use argh::FromArgs;
 use inquire::{InquireError, Select};
@@ -95,7 +96,8 @@ fn inquire() {
 }
 
 fn inquire_admin() {
-    let ans: Result<&str, InquireError> = Select::new("admin commands", vec!["init"]).prompt();
+    let ans: Result<&str, InquireError> =
+        Select::new("admin commands", vec!["init", "website"]).prompt();
 
     let Ok(ans) = ans else {
         println!("No selection made");
@@ -104,6 +106,7 @@ fn inquire_admin() {
 
     match ans {
         "init" => meetups::init::init(),
+        "website" => meetups::website::build(),
         _ => println!("Unknown admin command"),
     }
 }

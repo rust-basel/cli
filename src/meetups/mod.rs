@@ -1,8 +1,10 @@
 use std::default;
 
+use maud::Markup;
 use serde::{Deserialize, Serialize};
 
 pub mod init;
+pub mod website;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Meetups {
@@ -17,18 +19,18 @@ impl Default for Meetups {
     }
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Meetup {
     pub id: u32,
     pub title: String,
     pub date: String,
     pub address: Address,
     pub description: String,
-    pub markdown_url: String,
+    pub markdown_name: String,
     pub sponsors: Vec<Sponsor>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Address {
     pub street: String,
     pub city: String,
@@ -37,11 +39,45 @@ pub struct Address {
     pub description: Option<String>,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+impl Address {
+    pub fn html(&self) -> Markup {
+        maud::html! {
+            div {
+                h3 { "Address" }
+                p { (self.street) }
+                p { (self.city) }
+                p { (self.postal_code) }
+                p { (self.country) }
+                @if let Some(description) = &self.description {
+                    p { (description) }
+                }
+            }
+        }
+    }
+}
+
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Sponsor {
     pub name: String,
     pub website: Option<String>,
     pub content: Option<String>,
+}
+
+impl Sponsor {
+    pub fn html(&self) -> Markup {
+        maud::html! {
+            div {
+                h3 { "Sponsor" }
+                p { (self.name) }
+                @if let Some(website) = &self.website {
+                    a href=(website) { (website) }
+                }
+                @if let Some(content) = &self.content {
+                    p { (content) }
+                }
+            }
+        }
+    }
 }
 
 impl Meetup {
@@ -59,7 +95,7 @@ impl Meetup {
                 description: Some("Go around the building and dance.".to_string()),
             },
             description: "This is a default meetup description.".to_string(),
-            markdown_url: "http://example.com/meetup.md".to_string(),
+            markdown_name: "http://example.com/meetup.md".to_string(),
             sponsors: vec![Sponsor {
                 name: "Default Sponsor".to_string(),
                 website: Some("http://sponsor.com".to_string()),
