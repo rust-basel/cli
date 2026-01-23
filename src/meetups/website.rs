@@ -24,6 +24,7 @@ pub fn build() {
 
     let mut html_file = fs::OpenOptions::new()
         .write(true)
+        .truncate(true)
         .create(true)
         .open("index.html")
         .unwrap();
@@ -31,7 +32,9 @@ pub fn build() {
 }
 
 fn single_markdown(meetup: Meetup, markdown: (String, String)) -> maud::Markup {
-    let m_as_html = markdown::to_html(&markdown.1);
+    let m_as_html = markdown::to_html_with_options(&markdown.1, &markdown::Options::gfm())
+        .unwrap()
+        .to_string();
     let address_html = meetup.address.html();
     let sponsor_htmls = meetup
         .sponsors
@@ -52,7 +55,7 @@ fn single_markdown(meetup: Meetup, markdown: (String, String)) -> maud::Markup {
         (sponsor_html)
 
         div{
-            (m_as_html)
+            (maud::PreEscaped(m_as_html))
         }
     }
 }
