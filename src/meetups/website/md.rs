@@ -22,8 +22,7 @@ pub fn single_markdown_to_html(meetup: Meetup, markdown: String) -> maud::Markup
     };
 
     html! {
-        h2 { (meetup.title) }
-        p { (meetup.description) }
+        h3 {(meetup.title)}
         (address_html)
         (sponsor_html)
 
