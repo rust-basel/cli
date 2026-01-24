@@ -3,7 +3,6 @@ use super::Sponsor;
 use std::process::exit;
 use std::{fs, io::Write};
 
-use maud::PreEscaped;
 use maud::{Markup, html};
 mod md;
 
@@ -29,15 +28,15 @@ impl Address {
 impl Sponsor {
     pub fn html(&self) -> Markup {
         maud::html! {
-            div {
-                h3 { "Sponsor" }
-                p { (self.name) }
-                @if let Some(website) = &self.website {
-                    a href=(website) { (website) }
-                }
-                @if let Some(content) = &self.content {
-                    p { (content) }
-                }
+                div {
+                    p { (self.name) }
+                    @if let Some(website) = &self.website {
+                        a href=(website) { (website) }
+                    }
+                    @if let Some(content) = &self.content {
+                        p { (content) }
+                    }
+
             }
         }
     }
@@ -75,7 +74,6 @@ fn create_main_page(meetups_htmls: Vec<Markup>) -> maud::Markup {
             style {
                 (maud::PreEscaped(include_str!("../../../public/page.css")))
             }
-
         }
 
         title { "Rust Basel Meetups" }

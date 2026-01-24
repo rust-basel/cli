@@ -16,13 +16,17 @@ pub fn single_markdown_to_html(meetup: Meetup, markdown: String) -> maud::Markup
         .collect::<Vec<Markup>>();
 
     let sponsor_html = html! {
+        h3 { "Sponsors" }
         @for sponsor in &sponsor_htmls {
             (sponsor)
         }
     };
 
     html! {
-        h3 {(meetup.title)}
+
+        div id=(meetup.id) {
+            h2 {(meetup.title)}
+        }
         (address_html)
         (sponsor_html)
 

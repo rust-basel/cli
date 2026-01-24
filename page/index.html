@@ -1,4 +1,15 @@
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Merriweather:wght@300;400;700&display=swap");
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>/* Rust-themed Dark CSS for Markdown HTML */
+
+:root {
+    --rust-orange: #ce422b;
+    --rust-dark: #1a1a1a;
+    --rust-darker: #0d0d0d;
+    --rust-light: #f5f5f5;
+    --rust-gray: #8a8a8a;
+    --rust-code-bg: #2b2b2b;
+    --rust-border: #3a3a3a;
+    --rust-link: #dea584;
+}
 
 * {
     margin: 0;
@@ -7,249 +18,174 @@
 }
 
 body {
-    background: #f4e8d8;
-    font-family: "Merriweather", serif;
-    color: #2b1810;
-    padding: 20px;
-    background-image: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(139, 69, 19, 0.03) 2px,
-        rgba(139, 69, 19, 0.03) 4px
-    );
-    line-height: 1.8;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 8px;
-    background: linear-gradient(90deg, #8b4513, #c85a28, #8b4513);
-    z-index: 1000;
-}
-
-body > * {
-    max-width: 1200px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--rust-light);
+    background-color: var(--rust-dark);
+    max-width: 900px;
     margin: 0 auto;
-    background: #faf6f0;
-    padding: 40px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    border: 3px solid #8b4513;
+    padding: 2rem;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--rust-orange);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 h1 {
-    font-family: "Playfair Display", serif;
-    font-size: 3.5em;
-    font-weight: 900;
-    color: #8b4513;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 15px;
-    padding: 30px 20px 20px;
-    border-top: 4px solid #c85a28;
-    border-bottom: 4px solid #c85a28;
-    background: linear-gradient(180deg, #faf6f0 0%, #f4e8d8 100%);
-    text-shadow: 2px 2px 0px rgba(200, 90, 40, 0.3);
+    font-size: 2.5em;
+    border-bottom: 3px solid var(--rust-orange);
+    padding-bottom: 0.3em;
+    margin-top: 0;
 }
 
 h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.2em;
-    font-weight: 700;
-    color: #2b1810;
-    margin: 40px 0 15px;
-    line-height: 1.2;
-    border-bottom: 2px solid #c85a28;
-    padding-bottom: 10px;
+    font-size: 2em;
+    border-bottom: 2px solid var(--rust-border);
+    padding-bottom: 0.2em;
 }
 
 h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.6em;
-    font-weight: 700;
-    color: #5d4037;
-    margin: 30px 0 12px;
+    font-size: 1.5em;
 }
 
 h4 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: #8b4513;
-    margin: 25px 0 10px;
+    font-size: 1.25em;
 }
 
-h5,
-h6 {
-    font-family: "Playfair Display", serif;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #5d4037;
-    margin: 20px 0 8px;
-}
-
+/* Paragraphs and text */
 p {
-    margin-bottom: 18px;
-    text-align: justify;
-    color: #3e2723;
+    margin-bottom: 1em;
 }
 
-h2 {
-    font-family: "Playfair Display", serif;
-    font-size: 2.8em;
-    font-weight: 700;
-    color: #2b1810;
-    line-height: 1.2;
-    border-bottom: 2px solid #c85a28;
-    padding-bottom: 10px;
-}
-
-p {
-    font-size: 1.1em;
-    font-style: italic;
-    color: #5d4037;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-/* Links */
-a {
-    color: #c85a28;
-    text-decoration: underline;
-    transition: color 0.2s;
-}
-
-a:hover {
-    color: #8b4513;
-}
-
-ul,
-ol {
-    margin: 20px 0 20px 40px;
-}
-
-li {
-    margin-bottom: 10px;
-    padding-left: 5px;
-}
-
-ul li {
-    list-style-type: none;
-    position: relative;
-}
-
-ul li::before {
-    content: "⚙";
-    position: absolute;
-    left: -25px;
-    color: #c85a28;
-    font-size: 0.9em;
-}
-
-blockquote {
-    margin: 25px 0;
-    padding: 20px 30px;
-    border-left: 5px solid #c85a28;
-    background: #f4e8d8;
-    font-style: italic;
-    color: #5d4037;
-}
-
-blockquote p {
-    margin-bottom: 10px;
-}
-
-/* Code blocks */
-pre {
-    background: #2b2b2b;
-    color: #ce9178;
-    padding: 20px;
-    margin: 20px 0;
-    border-left: 5px solid #c85a28;
-    overflow-x: auto;
-    font-family: "Courier New", monospace;
-    font-size: 0.9em;
-    line-height: 1.5;
-}
-
-code {
-    background: #f4e8d8;
-    color: #c85a28;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: "Courier New", monospace;
-    font-size: 0.9em;
-}
-
-pre code {
-    background: transparent;
-    color: inherit;
-    padding: 0;
-}
-
-hr {
-    border: none;
-    border-top: 3px dotted #c85a28;
-    margin: 30px 0;
-}
-
-table {
-    width: 100%;
-    margin: 25px 0;
-    border-collapse: collapse;
-    background: #faf6f0;
-}
-
-th {
-    background: #8b4513;
-    color: #faf6f0;
-    padding: 12px;
-    text-align: left;
-    font-family: "Playfair Display", serif;
-    font-weight: 700;
-    border: 2px solid #c85a28;
-}
-
-td {
-    padding: 10px 12px;
-    border: 1px solid #c85a28;
-}
-
-tr:nth-child(even) {
-    background: #f4e8d8;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 25px auto;
-    border: 3px solid #8b4513;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Strong and emphasis */
 strong,
 b {
-    color: #8b4513;
-    font-weight: 700;
+    color: var(--rust-orange);
+    font-weight: 600;
 }
 
 em,
 i {
-    color: #5d4037;
+    color: var(--rust-link);
 }
 
-small {
-    color: #5d4037;
-    font-size: 0.85em;
+/* Links */
+a {
+    color: var(--rust-link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
 }
-</style></head><title>Rust Basel Meetups</title><h2>Opensource Contributions Meetup #0</h2><p>In this meetup we will build teams to contribute to or create opensource software, you will get support in doing so</p><div><h3>Address</h3><p>Barfüsserplatz 6</p><p>Basel</p><p>4051</p><p>Switzerland</p><p>Level 4 - Optravis Headquarter</p></div><div><h3>Sponsor</h3><p>Optravic LLC</p><a href="http://optravis.com">http://optravis.com</a><p></p></div><div><h3>Opensource Contribution Meetup</h3>
+
+a:hover {
+    border-bottom-color: var(--rust-link);
+}
+
+/* Lists */
+ul,
+ol {
+    margin-left: 2em;
+    margin-bottom: 1em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+/* Code */
+code {
+    background-color: var(--rust-code-bg);
+    color: var(--rust-link);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--rust-darker);
+    border-left: 4px solid var(--rust-orange);
+    padding: 1em;
+    overflow-x: auto;
+    margin-bottom: 1em;
+    border-radius: 4px;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--rust-light);
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid var(--rust-orange);
+    padding-left: 1em;
+    margin-left: 0;
+    margin-bottom: 1em;
+    color: var(--rust-gray);
+    font-style: italic;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+th,
+td {
+    border: 1px solid var(--rust-border);
+    padding: 0.75em;
+    text-align: left;
+}
+
+th {
+    background-color: var(--rust-code-bg);
+    color: var(--rust-orange);
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: var(--rust-code-bg);
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 2px solid var(--rust-border);
+    margin: 2em 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+/* Inline code in headings */
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+    font-size: 0.9em;
+}
+</style></head><title>Rust Basel Meetups</title><div id="0"><h2>Opensource Contributions Meetup</h2></div><div><h3>Address</h3><p>Barfüsserplatz 6</p><p>Basel</p><p>4051</p><p>Switzerland</p><p>Level 4 - Optravis Headquarter</p></div><h3>Sponsors</h3><div><p>Optravic LLC</p><a href="http://optravis.com">http://optravis.com</a><p></p></div><div><h3>Opensource Contribution Meetup</h3>
 <p>Welcome to the first Rust Basel meetup focused on open source contributions!</p>
 <h3>Teambuilding</h3>
 <p>Build a team of two or three people.
