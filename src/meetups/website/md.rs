@@ -25,7 +25,7 @@ pub fn single_markdown_to_html(meetup: Meetup, markdown: String) -> maud::Markup
     html! {
 
         div id=(meetup.id) {
-            h2 {(meetup.title)}
+            h2 {(meetup.title) " | " (meetup.date) " | " (meetup.id)}
         }
         (address_html)
         (sponsor_html)

@@ -1,4 +1,3 @@
-use maud::Markup;
 use serde::{Deserialize, Serialize};
 
 pub mod init;
@@ -37,15 +36,12 @@ pub struct Address {
     pub description: Option<String>,
 }
 
-
-
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Sponsor {
     pub name: String,
     pub website: Option<String>,
     pub content: Option<String>,
 }
-
 
 impl Meetup {
     fn default_with_id(id: u32) -> Self {

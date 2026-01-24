@@ -12,14 +12,9 @@ impl Address {
     pub fn html(&self) -> Markup {
         maud::html! {
             div {
-                h3 { "Address" }
-                p { (self.street) }
-                p { (self.city) }
-                p { (self.postal_code) }
-                p { (self.country) }
-                @if let Some(description) = &self.description {
-                    p { (description) }
-                }
+                p { @if let Some(description) = &self.description {
+                (description)
+                } " | " (self.street) " | "  (self.city) " | " (self.postal_code) }
             }
         }
     }
@@ -31,12 +26,11 @@ impl Sponsor {
                 div {
                     p { (self.name) }
                     @if let Some(website) = &self.website {
-                        a href=(website) { (website) }
+                         a href=(website) { (website) }
                     }
                     @if let Some(content) = &self.content {
                         p { (content) }
                     }
-
             }
         }
     }
@@ -77,6 +71,11 @@ fn create_main_page(meetups_htmls: Vec<Markup>) -> maud::Markup {
         }
 
         title { "Rust Basel Meetups" }
+
+
+        a href="https://rust-basel.ch" {
+            h1 { "Rust Basel | Meetups | Workshops" }
+        }
 
         @for h in &meetups_htmls {
                   (h.clone())
