@@ -99,7 +99,17 @@ p {
     color: #3e2723;
 }
 
-h2 + p {
+h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #2b1810;
+    line-height: 1.2;
+    border-bottom: 2px solid #c85a28;
+    padding-bottom: 10px;
+}
+
+p {
     font-size: 1.1em;
     font-style: italic;
     color: #5d4037;

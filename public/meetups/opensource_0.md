@@ -1,4 +1,4 @@
-## Opensource Contribution Meetup 
+### Opensource Contribution Meetup 
 
 Welcome to the first Rust Basel meetup focused on open source contributions!
 
