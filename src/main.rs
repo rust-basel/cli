@@ -18,7 +18,8 @@ enum Command {
     Job(JobCommand),
     Mtp(MeetupCommand),
     Doc(DocCommand),
-    Admin(AdminCommand),
+    Init(InitCommand),
+    Website(WebsiteCommand),
 }
 
 impl From<String> for Command {
@@ -38,11 +39,6 @@ fn command_as_vec() -> Vec<&'static str> {
 
 #[derive(FromArgs, PartialEq, Debug)]
 /// Find the featured jobs.
-#[argh(subcommand, name = "admin")]
-struct AdminCommand {}
-
-#[derive(FromArgs, PartialEq, Debug)]
-/// Find the featured jobs.
 #[argh(subcommand, name = "job")]
 struct JobCommand {}
 
@@ -55,6 +51,16 @@ struct DocCommand {}
 /// Explore meetups
 #[argh(subcommand, name = "meetup")]
 struct MeetupCommand {}
+
+#[derive(FromArgs, PartialEq, Debug)]
+/// Inits the repository
+#[argh(subcommand, name = "init")]
+struct InitCommand {}
+
+#[derive(FromArgs, PartialEq, Debug)]
+/// Builds the website
+#[argh(subcommand, name = "website")]
+struct WebsiteCommand {}
 
 fn main() {
     let basel: Basel = argh::from_env();
@@ -72,7 +78,8 @@ fn match_command(c: Command) {
         Command::Mtp(_mtp) => meetups::meetup_ui(),
 
         Command::Doc(_doc) => docs::docs_ui(),
-        Command::Admin(_admin_command) => inquire_admin(),
+        Command::Init(_init_command) => meetups::init::init(),
+        Command::Website(_website_command) => meetups::website::build(),
     }
 }
 
@@ -85,20 +92,4 @@ fn inquire() {
     };
 
     match_command(ans.to_owned().into());
-}
-
-fn inquire_admin() {
-    let ans: Result<&str, InquireError> =
-        Select::new("admin commands", vec!["init", "website"]).prompt();
-
-    let Ok(ans) = ans else {
-        println!("No selection made");
-        return;
-    };
-
-    match ans {
-        "init" => meetups::init::init(),
-        "website" => meetups::website::build(),
-        _ => println!("Unknown admin command"),
-    }
 }

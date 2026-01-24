@@ -37,22 +37,7 @@ pub struct Address {
     pub description: Option<String>,
 }
 
-impl Address {
-    pub fn html(&self) -> Markup {
-        maud::html! {
-            div {
-                h3 { "Address" }
-                p { (self.street) }
-                p { (self.city) }
-                p { (self.postal_code) }
-                p { (self.country) }
-                @if let Some(description) = &self.description {
-                    p { (description) }
-                }
-            }
-        }
-    }
-}
+
 
 #[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Sponsor {
@@ -61,22 +46,6 @@ pub struct Sponsor {
     pub content: Option<String>,
 }
 
-impl Sponsor {
-    pub fn html(&self) -> Markup {
-        maud::html! {
-            div {
-                h3 { "Sponsor" }
-                p { (self.name) }
-                @if let Some(website) = &self.website {
-                    a href=(website) { (website) }
-                }
-                @if let Some(content) = &self.content {
-                    p { (content) }
-                }
-            }
-        }
-    }
-}
 
 impl Meetup {
     fn default_with_id(id: u32) -> Self {

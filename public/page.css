@@ -1,4 +1,4 @@
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Merriweather:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Merriweather:wght@300;400;700&display=swap");
 
 * {
     margin: 0;
@@ -239,56 +239,3 @@ small {
     color: #5d4037;
     font-size: 0.85em;
 }
-</style></head><title>Rust Basel Meetups</title><h2>Opensource Contributions Meetup #0</h2><p>In this meetup we will build teams to contribute to or create opensource software, you will get support in doing so</p><div><h3>Address</h3><p>Barfüsserplatz 6</p><p>Basel</p><p>4051</p><p>Switzerland</p><p>Level 4 - Optravis Headquarter</p></div><div><h3>Sponsor</h3><p>Optravic LLC</p><a href="http://optravis.com">http://optravis.com</a><p></p></div><div><h1>Opensource Contribution Meetup</h1>
-<p>Welcome to the first Rust Basel meetup focused on open source contributions!</p>
-<h3>Teambuilding</h3>
-<p>Build a team of two or three people.
-Teams with three people might want to make sure that at least one person has some prior experience with Rust.</p>
-<h3>Choose a project</h3>
-<p>First decide what option you want to pursue:</p>
-<p>Options:</p>
-<ul>
-<li>Contribute to an existing Rust Open Source Project</li>
-<li>Start your own Open Source Project that integrates with Software via some Protocols or APIs
-<ul>
-<li>
-<p>Open Source Software</p>
-</li>
-<li>
-<p>Proprietary Software (Please be aware of Licenses and Terms of Service restrictions)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Solving Tickets</h4>
-<p>Make sure to first decide on the technical branch you are maybe intersted in:</p>
-<ul>
-<li>Embedded</li>
-<li>WebDev</li>
-<li>CLI</li>
-<li>GUI</li>
-<li>Databases</li>
-<li>ServerFrameworks</li>
-<li>Blockchain</li>
-</ul>
-<p>Then search what projects exitst in that area, see if there are any open tickets.
-What to look out for:</p>
-<ul>
-<li>Tickets with Help Wanted Label</li>
-<li>Tickets with Good First Issue Label</li>
-</ul>
-<h4>Integrating with Projects</h4>
-<p>Normally you use some software that can be extended in some way or support interactions over some protocol or API.
-Think about what software you use on a daily basis, or what software you would like to use but is missing some maybe a ui or a cli.</p>
-<h3>Projects and Issues</h3>
-<h4>Issues</h4>
-<ul>
-<li><a href="https://github.com/vleue/vleue_navigator/issues/106">https://github.com/vleue/vleue_navigator/issues/106</a></li>
-</ul>
-<h4>Repositories</h4>
-<ul>
-<li><a href="https://github.com/BloopAI/vibe-kanban">https://github.com/BloopAI/vibe-kanban</a></li>
-<li><a href="https://github.com/ironcalc/IronCalc">https://github.com/ironcalc/IronCalc</a></li>
-<li><a href="https://github.com/rust-basel/cli">https://github.com/rust-basel/cli</a></li>
-</ul>
-</div>

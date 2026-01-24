@@ -19,6 +19,7 @@ pub fn get_files() -> (Meetups, Vec<(String, String)>) {
     let git_result = cmd!(sh, "git clone https://github.com/rust-basel/cli.git")
         .read()
         .unwrap();
+
     println!("{}", git_result);
 
     // read files from repo
@@ -32,8 +33,6 @@ pub fn get_files() -> (Meetups, Vec<(String, String)>) {
         .open(public.join("meetups.toml"))
         .unwrap()
         .read_to_string(&mut toml_str);
-
-    println!("{}", toml_str);
 
     let meetups: Meetups = toml::from_str(&toml_str).unwrap();
 
