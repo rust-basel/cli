@@ -2,8 +2,6 @@ use std::{fs, io::Read};
 
 use xshell::cmd;
 
-use crate::meetups::Meetups;
-
 pub fn get_config_dir() -> std::path::PathBuf {
     dirs::config_dir().unwrap()
 }

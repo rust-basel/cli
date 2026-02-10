@@ -1,40 +1,9 @@
-use super::Address;
-use super::Sponsor;
-use std::process::exit;
 use std::{fs, io::Write};
 
 use maud::{Markup, html};
 mod md;
 
 use crate::remote;
-
-impl Address {
-    pub fn html(&self) -> Markup {
-        maud::html! {
-            div {
-                p { @if let Some(description) = &self.description {
-                (description)
-                } " | " (self.street) " | "  (self.city) " | " (self.postal_code) }
-            }
-        }
-    }
-}
-
-impl Sponsor {
-    pub fn html(&self) -> Markup {
-        maud::html! {
-                div {
-                    p { (self.name) }
-                    @if let Some(website) = &self.website {
-                         a href=(website) { (website) }
-                    }
-                    @if let Some(content) = &self.content {
-                        p { (content) }
-                    }
-            }
-        }
-    }
-}
 
 pub fn build() {
     let (css, markdown) = remote::get_files();

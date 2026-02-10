@@ -1,5 +1,4 @@
-use maud::{Markup, html};
-
+use maud::html;
 
 pub fn single_markdown_to_html(markdown: String) -> maud::Markup {
     let m_as_html = markdown::to_html_with_options(&markdown, &markdown::Options::gfm())
