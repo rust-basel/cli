@@ -185,158 +185,69 @@ h5 code,
 h6 code {
     font-size: 0.9em;
 }
-</style></head><title>Rust Basel Meetups</title><a href="https://rust-basel.ch"><h1>Rust Basel | Meetups | Workshops</h1></a><div><input type="search" id="search" placeholder="Search Meetups"><button>Search</button></div><div id="0"><h2>Opensource Contributions Meetup | ? | 0</h2></div><div><p>Level 4 - Optravis Headquarter | Barfüsserplatz 6 | Basel | 4051</p></div><h3>Sponsors</h3><div><p>Optravic LLC</p><a href="http://optravis.com">http://optravis.com</a><p></p></div><div><h3>Meetup</h3>
+</style></head><title>Rust Basel Meetups</title><a href="https://rust-basel.ch"><h1>Rust Basel | Meetups | Workshops</h1></a><div><h3>Meetup</h3>
 <p>Welcome to the first Rust Basel meetup focused on open source contributions!</p>
-<h3>Featured Projects and Issues</h3>
+<h3>Projects and Issues</h3>
 <h4>Issues</h4>
 <ul>
 <li><a href="https://github.com/vleue/vleue_navigator/issues/106">https://github.com/vleue/vleue_navigator/issues/106</a></li>
+<li>maybe you have an issue already</li>
 </ul>
 <h4>Repositories</h4>
 <ul>
 <li><a href="https://github.com/BloopAI/vibe-kanban">https://github.com/BloopAI/vibe-kanban</a></li>
 <li><a href="https://github.com/ironcalc/IronCalc">https://github.com/ironcalc/IronCalc</a></li>
 <li><a href="https://github.com/rust-basel/cli">https://github.com/rust-basel/cli</a></li>
+<li>your ideas</li>
 <li>Create your own Rust Open Source Project</li>
 </ul>
 <h3>Teambuilding</h3>
 <ul>
-<li>We vote on which projects people want to work on.</li>
-<li>If more than three people want to work on the same project, we split the team into two teams.</li>
-<li>Make your spaces.</li>
-</ul>
-<h3>We vote on which ones are left over</h3>
-<ul>
-<li>Contribute to an existing Rust Open Source Project</li>
-<li>Start your own Open Source Project that integrates with Software via some Protocols or APIs
-<ul>
 <li>
-<p>Open Source Software</p>
+<p>We vote on which projects people want to work on.</p>
 </li>
 <li>
-<p>Proprietary Software (Please be aware of Licenses and Terms of Service restrictions)</p>
+<p>If more than three people want to work on the same project, split the team into two teams.</p>
+</li>
+<li>
+<p>Oranize yourself in physical space</p>
 </li>
 </ul>
-</li>
-</ul>
-<h4>Solving Tickets</h4>
-<p>What to look out for:</p>
+<h4>Tips for contributing</h4>
 <ul>
-<li>Tickets with Help Wanted Label</li>
-<li>Tickets with Good First Issue Label</li>
+<li>Check tickets with Help Wanted Label</li>
+<li>Check tickets with Good First Issue Label</li>
+<li>Reproducing a bug is also contributing</li>
+<li>Be nice</li>
 </ul>
-</div><script>/**
- * Automatically jumps to elements based on search input field changes
- * Searches through all text content in the page and scrolls to the first match
- */
-(function () {
-  // Find all input fields with type="search" or role="search" or class containing "search"
-  const searchInputs = document.querySelectorAll("search");
-
-  // If no search inputs found, create a listener for any input field
-  const inputs =
-    searchInputs.length > 0
-      ? searchInputs
-      : document.querySelectorAll("search");
-
-  /**
-   * Highlights matching text in the document
-   */
-  function highlightText(text) {
-    // Remove previous highlights
-    document.querySelectorAll(".search-highlight").forEach((el) => {
-      const parent = el.parentNode;
-      parent.replaceChild(document.createTextNode(el.textContent), el);
-      parent.normalize();
-    });
-
-    if (!text || text.length < 2) return null;
-
-    // Find all text nodes in the document
-    const walker = document.createTreeWalker(
-      document.body,
-      NodeFilter.SHOW_TEXT,
-      {
-        acceptNode: function (node) {
-          // Skip script, style, and input elements
-          if (node.parentElement.matches("script, style, input, textarea")) {
-            return NodeFilter.FILTER_REJECT;
-          }
-          return NodeFilter.FILTER_ACCEPT;
-        },
-      },
-    );
-
-    let node;
-    let firstMatch = null;
-    const textLower = text.toLowerCase();
-
-    while ((node = walker.nextNode())) {
-      const nodeText = node.textContent;
-      const nodeLower = nodeText.toLowerCase();
-      const index = nodeLower.indexOf(textLower);
-
-      if (index !== -1) {
-        // Create highlighted version
-        const before = nodeText.substring(0, index);
-        const match = nodeText.substring(index, index + text.length);
-        const after = nodeText.substring(index + text.length);
-
-        const highlight = document.createElement("mark");
-        highlight.className = "search-highlight";
-        highlight.textContent = match;
-        highlight.style.backgroundColor = "#ce422b";
-        highlight.style.color = "#ffffff";
-        highlight.style.padding = "2px 4px";
-        highlight.style.borderRadius = "2px";
-
-        const fragment = document.createDocumentFragment();
-        fragment.appendChild(document.createTextNode(before));
-        fragment.appendChild(highlight);
-        fragment.appendChild(document.createTextNode(after));
-
-        node.parentNode.replaceChild(fragment, node);
-
-        if (!firstMatch) {
-          firstMatch = highlight;
-        }
-      }
-    }
-
-    return firstMatch;
-  }
-
-  /**
-   * Jumps to the first matching element
-   */
-  function jumpToMatch(searchText) {
-    const firstMatch = highlightText(searchText);
-
-    if (firstMatch) {
-      firstMatch.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-      return true;
-    }
-    return false;
-  }
-
-  // Add event listeners to all search inputs
-  inputs.forEach((input) => {
-    let debounceTimer;
-
-    input.addEventListener("input", function (e) {
-      clearTimeout(debounceTimer);
-
-      // Debounce to avoid excessive processing while typing
-      debounceTimer = setTimeout(() => {
-        const searchText = e.target.value.trim();
-        jumpToMatch(searchText);
-      }, 300);
-    });
-  });
-
-  console.log(`Search-to-jump initialized on ${inputs.length} input field(s)`);
-})();
-</script>
+<h4>When starting your own project</h4>
+<ul>
+<li>
+<p>think about one feature and only implement that in this session</p>
+</li>
+<li>
+<p>try to use cargo commands to get things done</p>
+</li>
+<li>
+<p>cargo init</p>
+</li>
+<li>
+<p>cargo add &lt;dependency&gt;</p>
+</li>
+<li>
+<p>cargo run</p>
+</li>
+<li>
+<p>cargo test</p>
+</li>
+<li>
+<p>cargo fmt</p>
+</li>
+<li>
+<p>cargo clippy --fix</p>
+</li>
+<li>
+<p>cargo install --path .</p>
+</li>
+</ul>
+</div>

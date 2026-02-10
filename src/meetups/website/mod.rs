@@ -37,36 +37,20 @@ impl Sponsor {
 }
 
 pub fn build() {
-    let (meetups, markdowns) = remote::get_files();
+    let (css, markdown) = remote::get_files();
 
-    let mut meetups_htmls: Vec<Markup> = Vec::new();
-
-    markdowns.iter().for_each(|(name, content)| {
-        let meetup = meetups
-            .meetups
-            .iter()
-            .find(|meetup| meetup.markdown_name == *name);
-
-        let Some(meetup) = meetup else {
-            eprintln!("could not find {name}, as a meetup");
-            exit(0);
-        };
-
-        meetups_htmls.push(md::single_markdown_to_html(meetup.clone(), content.clone()))
-    });
-
-    let html = create_main_page(meetups_htmls);
+    let html = create_main_page(md::single_markdown_to_html(markdown), css);
 
     write_html_file(html.into_string().as_bytes());
 }
 
-fn create_main_page(meetups_htmls: Vec<Markup>) -> maud::Markup {
+fn create_main_page(meetups_html: Markup, css: String) -> maud::Markup {
     html! {
         head{
             meta charset="UTF-8";
             meta name="viewport" content="width=device-width, initial-scale=1.0";
             style {
-                (maud::PreEscaped(include_str!("../../../public/page.css")))
+                (maud::PreEscaped(css))
             }
         }
 
@@ -77,9 +61,7 @@ fn create_main_page(meetups_htmls: Vec<Markup>) -> maud::Markup {
             h1 { "Rust Basel | Meetups | Workshops" }
         }
 
-        @for h in &meetups_htmls {
-                  (h.clone())
-        }
+        (meetups_html)
     }
 }
 

@@ -1,35 +1,12 @@
 use maud::{Markup, html};
 
-use crate::meetups::Meetup;
 
-pub fn single_markdown_to_html(meetup: Meetup, markdown: String) -> maud::Markup {
+pub fn single_markdown_to_html(markdown: String) -> maud::Markup {
     let m_as_html = markdown::to_html_with_options(&markdown, &markdown::Options::gfm())
         .unwrap()
         .to_string();
 
-    let address_html = meetup.address.html();
-
-    let sponsor_htmls = meetup
-        .sponsors
-        .iter()
-        .map(|sponsor| sponsor.html())
-        .collect::<Vec<Markup>>();
-
-    let sponsor_html = html! {
-        h3 { "Sponsors" }
-        @for sponsor in &sponsor_htmls {
-            (sponsor)
-        }
-    };
-
     html! {
-
-        div id=(meetup.id) {
-            h2 {(meetup.title) " | " (meetup.date) " | " (meetup.id)}
-        }
-        (address_html)
-        (sponsor_html)
-
         div{
             (maud::PreEscaped(m_as_html))
         }
