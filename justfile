@@ -3,7 +3,6 @@
 # Only needed for full dev cycle with publish
 deps:
     cargo install cargo-release
-    npm install tailwindcss @tailwindcss/cli
 
 install:
     cargo install --path .
