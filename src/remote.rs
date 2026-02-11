@@ -12,7 +12,7 @@ pub fn get_files() -> (String, String) {
     sh.change_dir(config_dir.clone());
     let _res = sh.current_dir();
     let cli_dir = config_dir.join("meetups");
-    fs::remove_dir_all(cli_dir).unwrap();
+    let _res = fs::remove_dir_all(cli_dir);
 
     let git_result = cmd!(sh, "git clone https://github.com/rust-basel/meetups.git")
         .read()
