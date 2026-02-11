@@ -1,7 +1,7 @@
+mod chat;
 mod docs;
 mod meetups;
 mod remote;
-mod chat;
 
 use argh::FromArgs;
 use inquire::{InquireError, Select};
