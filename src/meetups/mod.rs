@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 pub mod init;
 pub mod website;
 
+use crate::remote;
+
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Meetups {
     pub meetups: Vec<Meetup>,
@@ -68,4 +70,7 @@ impl Meetup {
     }
 }
 
-pub fn meetup_ui() {}
+pub fn meetup_ui() {
+    let (_css, markdown) = remote::get_files();
+    println!("{markdown}");
+}
