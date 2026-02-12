@@ -1,16 +1,15 @@
-use std::io;
-use color_eyre::owo_colors::OwoColorize;
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
+use ratatui::widgets::Borders;
 use ratatui::{
+    DefaultTerminal, Frame,
     buffer::Buffer,
     layout::{Constraint, Direction, Layout, Rect},
     style::Stylize,
     symbols::border,
-    text::{Line, Text},
+    text::Line,
     widgets::{Block, Paragraph, Widget},
-    DefaultTerminal, Frame,
 };
-use ratatui::widgets::{BorderType, Borders};
+use std::io;
 
 pub fn connect(_chat_command: usize) {
     // connect to server => panic if fail
@@ -29,7 +28,6 @@ pub struct App {
 }
 
 impl App {
-
     /// runs the application's main loop until the user quits
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> io::Result<()> {
         while !self.exit {
@@ -133,4 +131,3 @@ impl Widget for &App {
             .render(chunks[1], buf);
     }
 }
-
