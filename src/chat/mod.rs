@@ -105,11 +105,13 @@ impl Widget for &App {
             .split(inner);
 
         // Top paragraph (history)
+        let max_messages = chunks[0].height as usize;
+
         let chat_history: Vec<Line> = self
             .history
             .iter()
             .rev()
-            .take(4)
+            .take(max_messages)
             .rev()
             .map(|l| Line::from(l.as_str()))
             .collect();
