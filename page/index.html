@@ -1,0 +1,264 @@
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style>/* Rust-themed Dark CSS for Markdown HTML */
+
+:root {
+    --rust-orange: #ce422b;
+    --rust-dark: #1a1a1a;
+    --rust-darker: #0d0d0d;
+    --rust-light: #f5f5f5;
+    --rust-gray: #8a8a8a;
+    --rust-code-bg: #2b2b2b;
+    --rust-border: #3a3a3a;
+    --rust-link: #dea584;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.4;
+    color: var(--rust-light);
+    background-color: var(--rust-dark);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--rust-orange);
+    margin-top: 1.3em;
+    margin-bottom: 0.4em;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 2.5em;
+    border-bottom: 3px solid var(--rust-orange);
+    padding-bottom: 0.3em;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 2em;
+    border-bottom: 2px solid var(--rust-border);
+    padding-bottom: 0.2em;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h4 {
+    font-size: 1.25em;
+}
+
+/* Paragraphs and text */
+p {
+    margin-bottom: 1em;
+}
+
+strong,
+b {
+    color: var(--rust-orange);
+    font-weight: 600;
+}
+
+em,
+i {
+    color: var(--rust-link);
+}
+
+/* Links */
+a {
+    color: var(--rust-link);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+a:hover {
+    border-bottom-color: var(--rust-gray);
+}
+
+/* Lists */
+ul,
+ol {
+    margin-left: 2em;
+    margin-bottom: 1em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+/* Code */
+code {
+    background-color: var(--rust-code-bg);
+    color: var(--rust-link);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: "Consolas", "Monaco", "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--rust-darker);
+    border-left: 4px solid var(--rust-orange);
+    padding: 1em;
+    overflow-x: auto;
+    margin-bottom: 1em;
+    border-radius: 4px;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: var(--rust-light);
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid var(--rust-orange);
+    padding-left: 1em;
+    margin-left: 0;
+    margin-bottom: 1em;
+    color: var(--rust-gray);
+    font-style: italic;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+th,
+td {
+    border: 1px solid var(--rust-border);
+    padding: 0.75em;
+    text-align: left;
+}
+
+th {
+    background-color: var(--rust-code-bg);
+    color: var(--rust-orange);
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: var(--rust-code-bg);
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 2px solid var(--rust-border);
+    margin: 2em 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+/* Inline code in headings */
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+    font-size: 0.9em;
+}
+</style></head><title>Rust Basel Meetups</title><a href="https://rust-basel.ch"><h1>Rust Basel | Meetups | Workshops</h1></a><div><h3>Opensource Contributions Meetup 11.02.2026</h3>
+<p>Welcome to the first Rust Basel meetup focused on open source contributions!</p>
+<h3>Sponsor</h3>
+<ul>
+<li>Optravis LLC -&gt; <a href="https://optravis.com">https://optravis.com</a></li>
+</ul>
+<h3>Projects and Issues</h3>
+<h4>Repositories</h4>
+<ul>
+<li><a href="https://github.com/BloopAI/vibe-kanban">https://github.com/BloopAI/vibe-kanban</a></li>
+<li><a href="https://github.com/vleue/vleue_navigator">https://github.com/vleue/vleue_navigator</a></li>
+<li><a href="https://github.com/ironcalc/IronCalc">https://github.com/ironcalc/IronCalc</a></li>
+<li><a href="https://github.com/rust-basel/cli">https://github.com/rust-basel/cli</a></li>
+<li><a href="https://github.com/SilenLoc/catch">https://github.com/SilenLoc/catch</a></li>
+<li>the repos you know</li>
+<li>Create your own Rust Open Source Project</li>
+</ul>
+<h4>Issues</h4>
+<ul>
+<li><a href="https://github.com/vleue/vleue_navigator/issues/106">https://github.com/vleue/vleue_navigator/issues/106</a> - Game engine development</li>
+<li><a href="https://github.com/rust-basel/cli/issues/8">https://github.com/rust-basel/cli/issues/8</a> - Test windows compatibility</li>
+<li><a href="https://github.com/rust-basel/cli/issues/2">https://github.com/rust-basel/cli/issues/2</a> - Render markdown in the cli</li>
+<li><a href="https://github.com/rust-basel/cli/issues/3">https://github.com/rust-basel/cli/issues/3</a> - Document the CLI</li>
+<li><a href="https://github.com/rust-basel/cli/issues/1">https://github.com/rust-basel/cli/issues/1</a> - Design a chat feature</li>
+<li><a href="https://github.com/SilenLoc/catch/issues/1">https://github.com/SilenLoc/catch/issues/1</a> - Endpoint returns json string instead of string</li>
+<li>maybe you have an issue already</li>
+</ul>
+<h3>Teambuilding</h3>
+<ul>
+<li>
+<p>We vote on which projects people want to work on.</p>
+</li>
+<li>
+<p>If more than three people want to work on the same project, split the team into two teams.</p>
+</li>
+<li>
+<p>Oranize yourself in physical space</p>
+</li>
+</ul>
+<h4>Tips for contributing</h4>
+<ul>
+<li>Check tickets with Help Wanted Label</li>
+<li>Check tickets with Good First Issue Label</li>
+<li>Reproducing a bug is also contributing</li>
+<li>Be nice</li>
+</ul>
+<h4>When settin up or starting your own project</h4>
+<ul>
+<li>
+<p>when starting your own project think about one feature and only implement that in this session</p>
+</li>
+<li>
+<p>in both casestry to use cargo commands to get things done</p>
+</li>
+<li>
+<p>cargo init</p>
+</li>
+<li>
+<p>cargo add &lt;dependency&gt;</p>
+</li>
+<li>
+<p>cargo run</p>
+</li>
+<li>
+<p>cargo test</p>
+</li>
+<li>
+<p>cargo fmt</p>
+</li>
+<li>
+<p>cargo clippy --fix</p>
+</li>
+<li>
+<p>cargo install --path .</p>
+</li>
+</ul>
+</div>
