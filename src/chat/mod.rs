@@ -1,5 +1,5 @@
 use std::io;
-
+use color_eyre::owo_colors::OwoColorize;
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
 use ratatui::{
     buffer::Buffer,
@@ -10,7 +10,6 @@ use ratatui::{
     widgets::{Block, Paragraph, Widget},
     DefaultTerminal, Frame,
 };
-
 pub fn connect(_chat_command: usize) {
     // connect to server => panic if fail
     // run server connection
@@ -22,7 +21,8 @@ pub fn connect(_chat_command: usize) {
 
 #[derive(Debug, Default)]
 pub struct App {
-    counter: u8,
+    history: Vec<String>,
+    message: String,
     exit: bool,
 }
 
@@ -43,8 +43,6 @@ impl App {
 
     fn handle_events(&mut self) -> io::Result<()> {
         match event::read()? {
-            // it's important to check that the event is a key press event as
-            // crossterm also emits key release and repeat events on Windows.
             Event::Key(key_event) if key_event.kind == KeyEventKind::Press => {
                 self.handle_key_event(key_event)
             }
@@ -56,33 +54,27 @@ impl App {
     fn handle_key_event(&mut self, key_event: KeyEvent) {
         match key_event.code {
             KeyCode::Char('q') => self.exit(),
-            KeyCode::Left => self.decrement_counter(),
-            KeyCode::Right => self.increment_counter(),
+            KeyCode::Char('s') => self.insert_dummy_text(),
             _ => {}
         }
+    }
+
+    fn insert_dummy_text(&mut self) {
+        self.history.push("Hi you, pls answer :(".to_string());
+        self.message = "Writing a message ...".to_string();
     }
 
     fn exit(&mut self) {
         self.exit = true;
     }
-
-    fn increment_counter(&mut self) {
-        self.counter += 1;
-    }
-
-    fn decrement_counter(&mut self) {
-        self.counter -= 1;
-    }
 }
 
 impl Widget for &App {
     fn render(self, area: Rect, buf: &mut Buffer) {
-        let title = Line::from(" Counter App Tutorial ".bold());
+        let title = Line::from(" Basel Rust Chat Room ".bold());
         let instructions = Line::from(vec![
-            " Decrement ".into(),
-            "<Left>".blue().bold(),
-            " Increment ".into(),
-            "<Right>".blue().bold(),
+            " Send ".into(),
+            "<Enter>".blue().bold(),
             " Quit ".into(),
             "<Q> ".blue().bold(),
         ]);
@@ -91,10 +83,18 @@ impl Widget for &App {
             .title_bottom(instructions.centered())
             .border_set(border::THICK);
 
-        let counter_text = Text::from(vec![Line::from(vec![
-            "Value: ".into(),
-            self.counter.to_string().yellow(),
-        ])]);
+        let mut lines: Vec<Line> = vec![];
+
+        self.history.iter().for_each(|l|{
+
+            let new_line = Line::from(vec![
+               l.into()
+            ]);
+
+            lines.push(new_line);
+        });
+
+        let counter_text = Text::from(lines);
 
         Paragraph::new(counter_text)
             .centered()
