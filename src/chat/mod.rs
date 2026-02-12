@@ -57,6 +57,7 @@ impl App {
         match key_event.code {
             KeyCode::Esc => self.exit(),
             KeyCode::Enter => self.enter(),
+            KeyCode::Backspace => self.delete_last(),
             KeyCode::Char(c) => self.write(c),
             _ => {}
         }
@@ -69,6 +70,10 @@ impl App {
     fn enter(&mut self) {
         self.history.push(self.message.clone());
         self.message = String::new();
+    }
+
+    fn delete_last(&mut self) {
+        self.message.pop();
     }
 
     fn write(&mut self, c: char) {
