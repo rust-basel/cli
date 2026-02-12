@@ -10,6 +10,8 @@ use ratatui::{
     widgets::{Block, Paragraph, Widget},
     DefaultTerminal, Frame,
 };
+use ratatui::widgets::{BorderType, Borders};
+
 pub fn connect(_chat_command: usize) {
     // connect to server => panic if fail
     // run server connection
@@ -76,26 +78,33 @@ impl App {
 
 impl Widget for &App {
     fn render(self, area: Rect, buf: &mut Buffer) {
-        let title = Line::from(" Basel Rust Chat Room ".bold());
         let instructions = Line::from(vec![
             " Send ".into(),
             "<Enter>".blue().bold(),
             " Quit ".into(),
             "<Esc> ".blue().bold(),
         ]);
-        let block = Block::bordered()
-            .title(title.centered())
+
+        let line = Line::from(" Basel Rust Chat Room ".bold());
+        let outer = Block::bordered()
+            .title(line.centered())
             .title_bottom(instructions.centered())
             .border_set(border::THICK);
+
+        let inner = outer.inner(area);
+
+        // Draw ONE border around everything
+        outer.render(area, buf);
 
         let chunks = Layout::default()
             .direction(Direction::Vertical)
             .constraints([
-                Constraint::Min(1),
-                Constraint::Length(3),
+                Constraint::Min(1),    // top area
+                Constraint::Length(3), // bottom area
             ])
-            .split(area);
+            .split(inner);
 
+        // Top paragraph (history)
         let chat_history: Vec<Line> = self
             .history
             .iter()
@@ -105,14 +114,15 @@ impl Widget for &App {
             .map(|l| Line::from(l.as_str()))
             .collect();
 
-        Paragraph::new(Text::from(chat_history))
+        Paragraph::new(chat_history)
             .centered()
-            .block(block)
             .render(chunks[0], buf);
 
-        let input_block = Block::bordered().title(" Message ");
+        // Bottom paragraph (input)
+        let message_block = Block::default().borders(Borders::TOP);
         Paragraph::new(self.message.as_str())
-            .block(input_block)
+            .centered()
+            .block(message_block)
             .render(chunks[1], buf);
     }
 }
