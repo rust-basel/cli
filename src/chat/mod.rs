@@ -3,7 +3,7 @@ use color_eyre::owo_colors::OwoColorize;
 use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
 use ratatui::{
     buffer::Buffer,
-    layout::Rect,
+    layout::{Constraint, Direction, Layout, Rect},
     style::Stylize,
     symbols::border,
     text::{Line, Text},
@@ -53,19 +53,24 @@ impl App {
 
     fn handle_key_event(&mut self, key_event: KeyEvent) {
         match key_event.code {
-            KeyCode::Char('q') => self.exit(),
-            KeyCode::Char('s') => self.insert_dummy_text(),
+            KeyCode::Esc => self.exit(),
+            KeyCode::Enter => self.enter(),
+            KeyCode::Char(c) => self.write(c),
             _ => {}
         }
     }
 
-    fn insert_dummy_text(&mut self) {
-        self.history.push("Hi you, pls answer :(".to_string());
-        self.message = "Writing a message ...".to_string();
-    }
-
     fn exit(&mut self) {
         self.exit = true;
+    }
+
+    fn enter(&mut self) {
+        self.history.push(self.message.clone());
+        self.message = String::new();
+    }
+
+    fn write(&mut self, c: char) {
+        self.message.push(c)
     }
 }
 
@@ -76,30 +81,39 @@ impl Widget for &App {
             " Send ".into(),
             "<Enter>".blue().bold(),
             " Quit ".into(),
-            "<Q> ".blue().bold(),
+            "<Esc> ".blue().bold(),
         ]);
         let block = Block::bordered()
             .title(title.centered())
             .title_bottom(instructions.centered())
             .border_set(border::THICK);
 
-        let mut lines: Vec<Line> = vec![];
+        let chunks = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([
+                Constraint::Min(1),
+                Constraint::Length(3),
+            ])
+            .split(area);
 
-        self.history.iter().for_each(|l|{
+        let chat_history: Vec<Line> = self
+            .history
+            .iter()
+            .rev()
+            .take(4)
+            .rev()
+            .map(|l| Line::from(l.as_str()))
+            .collect();
 
-            let new_line = Line::from(vec![
-               l.into()
-            ]);
-
-            lines.push(new_line);
-        });
-
-        let counter_text = Text::from(lines);
-
-        Paragraph::new(counter_text)
+        Paragraph::new(Text::from(chat_history))
             .centered()
             .block(block)
-            .render(area, buf);
+            .render(chunks[0], buf);
+
+        let input_block = Block::bordered().title(" Message ");
+        Paragraph::new(self.message.as_str())
+            .block(input_block)
+            .render(chunks[1], buf);
     }
 }
 
