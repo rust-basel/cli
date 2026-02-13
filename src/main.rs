@@ -1,3 +1,4 @@
+mod chat;
 mod docs;
 mod meetups;
 mod remote;
@@ -20,6 +21,7 @@ enum Command {
     Doc(DocCommand),
     Init(InitCommand),
     Website(WebsiteCommand),
+    Chat(ChatCommand),
 }
 
 impl From<String> for Command {
@@ -62,6 +64,15 @@ struct InitCommand {}
 #[argh(subcommand, name = "website")]
 struct WebsiteCommand {}
 
+#[derive(FromArgs, PartialEq, Debug)]
+/// Runs the chat
+#[argh(subcommand, name = "chat")]
+struct ChatCommand {
+    /// the login code
+    #[argh(option, short = 'c', long = "code")]
+    code: usize,
+}
+
 fn main() {
     let basel: Basel = argh::from_env();
     match basel.commands {
@@ -80,6 +91,8 @@ fn match_command(c: Command) {
         Command::Doc(_doc) => docs::docs_ui(),
         Command::Init(_init_command) => meetups::init::init(),
         Command::Website(_website_command) => meetups::website::build(),
+
+        Command::Chat(_chat_command) => chat::connect(_chat_command.code),
     }
 }
 
